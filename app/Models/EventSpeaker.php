@@ -8,4 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class EventSpeaker extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        "event_id",
+        "speaker_id"
+    ];
+
 }

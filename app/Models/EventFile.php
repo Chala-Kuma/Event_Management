@@ -8,4 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class EventFile extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        "event_id",
+        "image_url",
+        "vedio_url",
+        "doc_url"
+    ];
 }
