@@ -34,6 +34,7 @@ return new class extends Migration
             $table->string("event_type");
             $table->string("event_status");
             $table->integer("available_tickets");
+            $table->softDeletes();
             $table->timestamps();
         });
     }

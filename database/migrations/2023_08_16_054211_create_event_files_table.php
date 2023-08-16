@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string("image_url");
             $table->string("vedio_url");
             $table->string("doc_url");
+            $table->softDeletes();
             $table->timestamps();
         });
     }

@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string("phone");
             $table->boolean("is_present")->default(0);
             $table->foreignId("event_id")->constrained()->cascadeOnDelete();
+            $table->softDeletes();
             $table->timestamps();
         });
     }

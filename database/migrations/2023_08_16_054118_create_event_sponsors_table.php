@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId("event_id")->constrainted()->cascadeOnDelete();
             $table->foreignId("sponsor_id")->constrainted()->cascadeOnDelete();
+            $table->softDeletes();
             $table->timestamps();
         });
     }
