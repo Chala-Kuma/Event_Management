@@ -33,7 +33,7 @@ return new class extends Migration
             $table->string("hall");
             $table->string("event_type");
             $table->string("event_status");
-            $table->integer("available_tickets");
+            $table->integer("available_seat");
             $table->softDeletes();
             $table->timestamps();
         });
