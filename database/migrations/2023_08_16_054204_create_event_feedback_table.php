@@ -13,6 +13,9 @@ return new class extends Migration
     {
         Schema::create('event_feedback', function (Blueprint $table) {
             $table->id();
+            $table->foreignId("event_id")->constrained()->cascadeOnDelete();
+            $table->foreignId("event_attendee_id")->constrained()->cascadeOnDelete();
+            $table->longText("event_feedback");
             $table->timestamps();
         });
     }
