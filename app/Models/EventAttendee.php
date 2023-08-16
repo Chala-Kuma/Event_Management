@@ -8,4 +8,17 @@ use Illuminate\Database\Eloquent\Model;
 class EventAttendee extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        "name",
+        "email",
+        "phone",
+        "is_present",
+        "event_id"
+    ];
+
+    /// event attendee belongs to the event (one to many relationship)
+    public function event(){
+        return $this->belongsTo(Event::class);
+    }
 }

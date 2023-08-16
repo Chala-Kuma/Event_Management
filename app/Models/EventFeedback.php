@@ -8,4 +8,15 @@ use Illuminate\Database\Eloquent\Model;
 class EventFeedback extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        "event_id",
+        "event_attendee_id",
+        "event_feedback"
+    ];
+
+    /// event attendee belongs to the event (one to many relationship)
+    public function event(){
+        return $this->belongsTo(Event::class);
+    }
 }

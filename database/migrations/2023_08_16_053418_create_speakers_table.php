@@ -13,10 +13,13 @@ return new class extends Migration
     {
         Schema::create('speakers', function (Blueprint $table) {
             $table->id();
+            $table->string("name");
+            $table->string("email")->unique();
+            $table->string("phone")->unique();
+            $table->string("bio")->nullable();
             $table->timestamps();
         });
     }
-
     /**
      * Reverse the migrations.
      */
