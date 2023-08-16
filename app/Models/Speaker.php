@@ -19,4 +19,9 @@ class Speaker extends Model
     public function event(){
         return $this->belongsToMany(Event::class,"event_speakers");
     }
+
+    /// Speaker belongs to the event (one to many relationship)
+    public function user(){
+        return $this->belongsTo(User::class);
+    }
 }

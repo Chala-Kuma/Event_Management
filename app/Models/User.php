@@ -41,4 +41,30 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    //user have relations with event (one to many)
+    function event(){
+        return $this->hasMany(Event::class);
+    }
+
+    // user has many attendee relationship (one to many relation ship)
+    public function eventAttendee(){
+        return $this->hasMany(EventAttendee::class);
+    }
+
+    // user has many File relation ship (one to many relation ship)
+    public function eventFile(){
+        return $this->hasMany(EventFile::class);
+    }
+
+    // user has many Speaker relation ship (one to many relation ship)
+    public function speaker(){
+        return $this->hasMany(Speaker::class);
+    }
+
+    // user has many Sponsor relation ship (one to many relation ship)
+    public function sponsor(){
+        return $this->hasMany(Sponsor::class);
+    }
+
 }

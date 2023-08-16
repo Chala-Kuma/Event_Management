@@ -13,4 +13,6 @@ class EventSponsor extends Model
         "event_id",
         "sponsor_id"
     ];
+
+    
 }

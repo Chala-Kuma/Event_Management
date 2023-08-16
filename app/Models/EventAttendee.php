@@ -21,4 +21,8 @@ class EventAttendee extends Model
     public function event(){
         return $this->belongsTo(Event::class);
     }
+    /// user attendee belongs to the event (one to many relationship)
+    public function user(){
+        return $this->belongsTo(User::class);
+    }
 }

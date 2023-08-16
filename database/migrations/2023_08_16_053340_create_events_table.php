@@ -23,6 +23,7 @@ return new class extends Migration
     {
         Schema::create('events', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('user_id')->constrained()->cascadeOnDelete();
             $table->string("title");
             $table->longText("descripton");
             $table->dateTime("start_date");
