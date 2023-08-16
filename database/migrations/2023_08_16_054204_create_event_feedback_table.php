@@ -16,6 +16,7 @@ return new class extends Migration
             $table->foreignId("event_id")->constrained()->cascadeOnDelete();
             $table->foreignId("event_attendee_id")->constrained()->cascadeOnDelete();
             $table->longText("event_feedback");
+            $table->softDeletes();
             $table->timestamps();
         });
     }

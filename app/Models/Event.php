@@ -20,7 +20,7 @@ class Event extends Model
         "hall",
         "event_type",
         "event_status",
-        "available_tickets"
+        "available_seat"
     ];
 
     // event has many attendee relationship (one to many relation ship)
@@ -45,5 +45,10 @@ class Event extends Model
 
     public function sponsor(){
         return $this->belongsToMany(Sponsor::class,"event_sponsors");
+    }
+
+    //relationship with user model (one to many relationship)
+    public function user(){
+        return $this->belongsTo(User::class);
     }
 }

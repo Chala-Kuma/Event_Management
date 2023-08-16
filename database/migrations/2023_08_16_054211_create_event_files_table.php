@@ -13,10 +13,12 @@ return new class extends Migration
     {
         Schema::create('event_files', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('user_id')->constrained()->cascadeOnDelete();
             $table->foreignId("event_id")->constrained()->cascadeOnDelete();
             $table->string("image_url");
             $table->string("vedio_url");
             $table->string("doc_url");
+            $table->softDeletes();
             $table->timestamps();
         });
     }

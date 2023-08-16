@@ -13,5 +13,5 @@ class EventSpeaker extends Model
         "event_id",
         "speaker_id"
     ];
-
+  
 }

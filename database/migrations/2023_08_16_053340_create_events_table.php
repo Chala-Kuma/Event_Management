@@ -23,6 +23,7 @@ return new class extends Migration
     {
         Schema::create('events', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('user_id')->constrained()->cascadeOnDelete();
             $table->string("title");
             $table->longText("descripton");
             $table->dateTime("start_date");
@@ -33,7 +34,8 @@ return new class extends Migration
             $table->string("hall");
             $table->string("event_type");
             $table->string("event_status");
-            $table->integer("available_tickets");
+            $table->integer("available_seat");
+            $table->softDeletes();
             $table->timestamps();
         });
     }
