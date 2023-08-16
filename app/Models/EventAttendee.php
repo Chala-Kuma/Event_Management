@@ -16,4 +16,9 @@ class EventAttendee extends Model
         "is_present",
         "event_id"
     ];
+
+    /// event attendee belongs to the event (one to many relationship)
+    public function event(){
+        return $this->belongsTo(Event::class);
+    }
 }

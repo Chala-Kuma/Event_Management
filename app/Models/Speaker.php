@@ -15,4 +15,8 @@ class Speaker extends Model
         "phone",
         "bio"
     ];
+
+    public function event(){
+        return $this->belongsToMany(Event::class,"event_speakers");
+    }
 }

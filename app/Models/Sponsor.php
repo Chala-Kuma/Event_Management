@@ -14,4 +14,8 @@ class Sponsor extends Model
         "email",
         "logo"
     ];
+
+    public function event(){
+        return $this->belongsToMany(Event::class,"event_sponsors");
+    }
 }

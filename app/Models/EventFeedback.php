@@ -14,4 +14,9 @@ class EventFeedback extends Model
         "event_attendee_id",
         "event_feedback"
     ];
+
+    /// event attendee belongs to the event (one to many relationship)
+    public function event(){
+        return $this->belongsTo(Event::class);
+    }
 }

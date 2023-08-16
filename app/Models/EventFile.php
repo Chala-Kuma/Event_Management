@@ -15,4 +15,9 @@ class EventFile extends Model
         "vedio_url",
         "doc_url"
     ];
+
+    /// event attendee belongs to the event (one to many relationship)
+    public function event(){
+        return $this->belongsTo(Event::class);
+    }
 }
