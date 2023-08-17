@@ -16,9 +16,8 @@ use App\Http\Controllers\EventController;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+Route::middleware("auth:sanctum")->group(function(){
+    Route::apiResource("event",EventController::class);
 });
 Route::post("auth/register",[AuthController::class, "register"]);
 Route::post("auth/login",[AuthController::class, "login"]);
-Route::apiResource("event",EventController::class);

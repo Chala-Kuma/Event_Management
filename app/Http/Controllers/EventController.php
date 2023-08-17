@@ -25,7 +25,7 @@ class EventController extends Controller
     public function store(EventRequest $request)
     {
         //
-        $event = Event::create($request->validated());
+        $event = auth()->user()->event()->create($request->validated());
         return new EventResource($event);
     }
 
