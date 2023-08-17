@@ -9,8 +9,15 @@ class Event extends Model
 {
     use HasFactory;
 
+    public const OPEN = 1;
+    public const CLOSED = 0;
+
+    public const UP_COMING = "up coming";
+    public const ON_GOING = "on going";
+    public const PASSED = "passed";
     protected $fillable = [
         "title",
+        "user_id",
         "descripton",
         "start_date",
         "end_date",
