@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\EventRequest;
+use App\Models\Event;
 use Illuminate\Http\Request;
+use App\Http\Resources\EventResource;
 
 class EventController extends Controller
 {
@@ -12,14 +15,17 @@ class EventController extends Controller
     public function index()
     {
         //
+        return EventResource::collection(Event::all());
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(EventRequest $request)
     {
         //
+        $event = Event::create($request->validated());
+        return new EventResource($event);
     }
 
     /**
