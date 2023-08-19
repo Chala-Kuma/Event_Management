@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Sponsor;
-use Illuminate\Http\Request;
 use App\Http\Requests\SponsorRequest;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\UpdateSponsorRequest;

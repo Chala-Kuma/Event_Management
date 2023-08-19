@@ -3,6 +3,7 @@
 use App\Http\Controllers\Api\AuthController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\EventController;
+use App\Http\Controllers\EventSpeakerController;
 use App\Http\Controllers\SpeakerController;
 use App\Http\Controllers\SponsorController;
 
@@ -21,8 +22,10 @@ Route::middleware("auth:sanctum")->group(function(){
     Route::apiResource("event",EventController::class,["except"=>["index","show"]]);
     Route::apiResource("speaker",SpeakerController::class,["except"=>["show"]]);
     Route::apiResource("sponsor",SponsorController::class,["except"=>["show"]]);
+    Route::apiResource("event/{event}/speaker",EventSpeakerController::class,["except"=>["index","show"]]);
 });
 Route::apiResource("event",EventController::class,["only"=>["index","show"]]);
+Route::apiResource("event/{event}/speaker",EventSpeakerController::class,["only"=>["index","show"]]);
 Route::apiResource("speaker",SpeakerController::class,["only"=>["show"]]);
 Route::apiResource("sponsor",SponsorController::class,["only"=>["show"]]);
 Route::post("auth/register",[AuthController::class, "register"]);
