@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Models\Speaker;
+use App\Http\Requests\SpeakerRequest;
+use App\Http\Requests\UpdateSpeakerRequest;
+use Symfony\Component\HttpFoundation\Response;
 
 class SpeakerController extends Controller
 {
@@ -12,37 +15,44 @@ class SpeakerController extends Controller
     public function index()
     {
         //
+        return Speaker::all();
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(SpeakerRequest $request)
     {
         //
+        return auth()->user()->speaker()->create($request->validated());
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Speaker $speaker)
     {
         //
+        return $speaker;
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(UpdateSpeakerRequest $request, Speaker $speaker)
     {
         //
+        $speaker->update($request->validated());
+        return $speaker;
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Speaker $speaker)
     {
         //
+        $speaker->delete();
+        return response("",Response::HTTP_NO_CONTENT);
     }
 }
