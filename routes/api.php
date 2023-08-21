@@ -1,8 +1,10 @@
 <?php
 
 use App\Http\Controllers\Api\AuthController;
+use App\Http\Controllers\EventAttendeeController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\EventController;
+use App\Http\Controllers\EventFeedbackController;
 use App\Http\Controllers\EventSpeakerController;
 use App\Http\Controllers\EventSponsorController;
 use App\Http\Controllers\SpeakerController;
@@ -20,16 +22,20 @@ use App\Http\Controllers\SponsorController;
 */
 
 Route::middleware("auth:sanctum")->group(function(){
+    Route::post("auth/logout", [AuthController::class,"logout"]);
     Route::apiResource("event",EventController::class,["except"=>["index","show"]]);
     Route::apiResource("speaker",SpeakerController::class,["except"=>["show"]]);
     Route::apiResource("sponsor",SponsorController::class,["except"=>["show"]]);
     Route::apiResource("event/{event}/speaker",EventSpeakerController::class,["except"=>["index","show"]]);
     Route::apiResource("event/{event}/sponsor",EventSponsorController::class,["except"=>["index","show"]]);
+    Route::apiResource("event/{event}/feedback",EventFeedbackController::class,["only"=>["index"]]);
+    Route::apiResource("event/{event}/attendee",EventAttendeeController::class,["only"=>["index","show"]]);
 
 });
 Route::apiResource("event",EventController::class,["only"=>["index","show"]]);
 Route::apiResource("event/{event}/speaker",EventSpeakerController::class,["only"=>["index","show"]]);
 Route::apiResource("event/{event}/sponsor",EventSponsorController::class,["only"=>["index","show"]]);
+Route::apiResource("event/{event}/attendee",EventAttendeeController::class,["only"=>["store"]]);
 Route::apiResource("speaker",SpeakerController::class,["only"=>["show"]]);
 Route::apiResource("sponsor",SponsorController::class,["only"=>["show"]]);
 Route::post("auth/register",[AuthController::class, "register"]);
