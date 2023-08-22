@@ -28,7 +28,7 @@ Route::middleware("auth:sanctum")->group(function(){
     Route::apiResource("sponsor",SponsorController::class,["except"=>["show"]]);
     Route::apiResource("event/{event}/speaker",EventSpeakerController::class,["except"=>["index","show"]]);
     Route::apiResource("event/{event}/sponsor",EventSponsorController::class,["except"=>["index","show"]]);
-    Route::apiResource("event/{event}/feedback",EventFeedbackController::class,["only"=>["index"]]);
+    Route::apiResource("event/{event}/feedback",EventFeedbackController::class,["only"=>["index","show"]]);
     Route::apiResource("event/{event}/attendee",EventAttendeeController::class,["only"=>["index","show"]]);
     Route::put("attendee/{attendee}",[EventAttendeeController::class,"approveAttendee"])->name("attendee.approve");
     Route::put("attendee/{attendee}/attendance",[EventAttendeeController::class,"attendance"])->name("attendee.attendance");
@@ -37,6 +37,7 @@ Route::apiResource("event",EventController::class,["only"=>["index","show"]]);
 Route::apiResource("event/{event}/speaker",EventSpeakerController::class,["only"=>["index","show"]]);
 Route::apiResource("event/{event}/sponsor",EventSponsorController::class,["only"=>["index","show"]]);
 Route::apiResource("event/{event}/attendee",EventAttendeeController::class,["only"=>["store"]]);
+Route::post("event/{event}/feedback/{attendee}",[EventFeedbackController::class,"store"])->name("attendee.feedback");
 Route::apiResource("speaker",SpeakerController::class,["only"=>["show"]]);
 Route::apiResource("sponsor",SponsorController::class,["only"=>["show"]]);
 Route::post("auth/register",[AuthController::class, "register"]);
