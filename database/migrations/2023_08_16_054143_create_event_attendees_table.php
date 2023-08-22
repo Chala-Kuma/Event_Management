@@ -13,11 +13,12 @@ return new class extends Migration
     {
         Schema::create('event_attendees', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('user_id')->nullable()->constrained()->cascadeOnDelete()->default(null);
             $table->string("name");
             $table->string("email");
             $table->string("phone");
             $table->boolean("is_present")->default(0);
+            $table->boolean("is_approved")->default(0);
             $table->foreignId("event_id")->constrained()->cascadeOnDelete();
             $table->softDeletes();
             $table->timestamps();

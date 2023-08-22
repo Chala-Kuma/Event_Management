@@ -31,6 +31,7 @@ class Event extends Model
         "available_seat"
     ];
 
+    protected $guarded = false;
     // event has many attendee relationship (one to many relation ship)
     public function eventAttendee(){
         return $this->hasMany(EventAttendee::class);

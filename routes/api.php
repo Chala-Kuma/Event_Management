@@ -22,7 +22,7 @@ use App\Http\Controllers\SponsorController;
 */
 
 Route::middleware("auth:sanctum")->group(function(){
-    Route::post("auth/logout", [AuthController::class,"logout"]);
+    Route::post("auth/logout", [AuthController::class,"logout"])->name("logout");
     Route::apiResource("event",EventController::class,["except"=>["index","show"]]);
     Route::apiResource("speaker",SpeakerController::class,["except"=>["show"]]);
     Route::apiResource("sponsor",SponsorController::class,["except"=>["show"]]);
@@ -30,7 +30,7 @@ Route::middleware("auth:sanctum")->group(function(){
     Route::apiResource("event/{event}/sponsor",EventSponsorController::class,["except"=>["index","show"]]);
     Route::apiResource("event/{event}/feedback",EventFeedbackController::class,["only"=>["index"]]);
     Route::apiResource("event/{event}/attendee",EventAttendeeController::class,["only"=>["index","show"]]);
-
+    Route::put("attendee/{attendee}",[EventAttendeeController::class,"approveAttendee"])->name("attendee.approve");
 });
 Route::apiResource("event",EventController::class,["only"=>["index","show"]]);
 Route::apiResource("event/{event}/speaker",EventSpeakerController::class,["only"=>["index","show"]]);

@@ -51,7 +51,7 @@ class User extends Authenticatable
 
     // user has many attendee relationship (one to many relation ship)
     public function eventAttendee(){
-        return $this->hasMany(EventAttendee::class);
+        return $this->hasMany(EventAttendee::class,"user_id","id");
     }
 
     // user has many File relation ship (one to many relation ship)

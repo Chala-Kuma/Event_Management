@@ -15,6 +15,7 @@ class EventAttendee extends Model
         "email",
         "phone",
         "is_present",
+        "is_approved",
         "event_id"
     ];
 

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Event;
 use Illuminate\Http\Request;
 
 class EventFeedbackController extends Controller
@@ -9,9 +10,10 @@ class EventFeedbackController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Event $event)
     {
         //
+        return $event->eventFeedback;
     }
 
     /**
