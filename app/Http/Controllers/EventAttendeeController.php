@@ -71,4 +71,17 @@ class EventAttendeeController extends Controller
         ]);
         return $attendee;
     }
+
+    public function attendance(Request $request, EventAttendee $attendee){
+        $request->validate([
+            "is_present" => ["required","boolean"]
+        ]);
+
+        $attendee->update([
+            "is_present" => $request->is_present
+        ]);
+
+        return $attendee;
+
+    }
 }

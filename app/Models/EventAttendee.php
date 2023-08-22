@@ -16,7 +16,8 @@ class EventAttendee extends Model
         "phone",
         "is_present",
         "is_approved",
-        "event_id"
+        "event_id",
+        "user_id"
     ];
 
     /// event attendee belongs to the event (one to many relationship)
