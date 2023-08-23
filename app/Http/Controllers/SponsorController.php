@@ -52,8 +52,7 @@ class SponsorController extends Controller
         if($request->hasFile('logo')){
             Storage::disk("public")->delete($sponsor->logo);
             $sponsor->update([
-                "name"=>$request->name?$request->name:$sponsor->name,
-                "email" =>$request->email?$request->email:$sponsor->email,
+                ...$request->all(),
                 "logo" => $request->file('logo')->store("sponsor_logo","public")
             ]);
         }
