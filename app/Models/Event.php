@@ -28,7 +28,8 @@ class Event extends Model
         "hall",
         "event_type",
         "event_status",
-        "available_seat"
+        "available_seat",
+        "banner"
     ];
 
     protected $guarded = false;

@@ -33,7 +33,8 @@ class EventRequest extends FormRequest
             "hall" => ["required","string"],
             "event_type" => ["sometimes","boolean"],
             "event_status" => ["sometimes","string"],
-            "available_seat" => ["required","integer"]
+            "available_seat" => ["required","integer"],
+            "banner" => ["required","image"]
         ];
     }
 }

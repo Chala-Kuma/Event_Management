@@ -26,6 +26,7 @@ return new class extends Migration
             $table->boolean("event_type")->default(Event::OPEN);
             $table->string("event_status")->default(Event::UP_COMING);
             $table->integer("available_seat");
+            $table->string("banner");
             $table->softDeletes();
             $table->timestamps();
         });

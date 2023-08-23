@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\EventRequest;
-use App\Http\Requests\UpdateEventRequest;
 use App\Models\Event;
+use App\Http\Requests\EventRequest;
 use App\Http\Resources\EventResource;
+use Illuminate\Support\Facades\Storage;
+use App\Http\Requests\UpdateEventRequest;
 use Symfony\Component\HttpFoundation\Response;
 
 class EventController extends Controller
@@ -25,7 +26,13 @@ class EventController extends Controller
     public function store(EventRequest $request)
     {
         //
-        $event = auth()->user()->event()->create($request->validated());
+        $request->validated();
+        $event = auth()->user()->event()->create(
+            [
+                ...$request->all(),
+                "banner" => $request->file('banner')->store("event banner","public")
+            ]
+        );
         return new EventResource($event);
     }
 
@@ -44,7 +51,19 @@ class EventController extends Controller
     public function update(UpdateEventRequest $request, Event $event)
     {
         //
-        $event->update($request->validated());
+        $request->validated();
+        if($request->hasFile('banner')){
+            Storage::disk("public")->delete($event->banner);
+            $event->update(
+                [
+                    ...$request->all(),
+                    "banner" => $request->file('banner')->store("event banner","public")
+                ]
+            );
+        }
+        else{
+            $event->update();
+        }
         return new EventResource($event);
     }
 
