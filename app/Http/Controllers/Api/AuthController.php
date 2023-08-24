@@ -4,11 +4,12 @@ namespace App\Http\Controllers\Api;
 
 use App\Models\User;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 use App\Http\Requests\LoginRequest;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Requests\RegisterUserRequest;
+use Symfony\Component\HttpFoundation\Response;
 
 class AuthController extends Controller
 {
@@ -16,12 +17,17 @@ class AuthController extends Controller
 
     public function register(RegisterUserRequest $request){
 
-        $request->validated();
-        return User::create([
-            "name"=> $request->name,
-            "email"=> $request->email,
-            "password" => Hash::make($request->password)
-        ]);
+        if(auth()->user()->is_super_admin){
+
+            $request->validated();
+            return User::create([
+                "name"=> $request->name,
+                "email"=> $request->email,
+                "password" => Hash::make($request->password)
+            ]);
+        }
+
+        return response(["message"=> "unauthorized"], Response::HTTP_UNAUTHORIZED);
 
     }
 

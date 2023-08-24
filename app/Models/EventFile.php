@@ -17,6 +17,12 @@ class EventFile extends Model
         "doc_url"
     ];
 
+    protected $casts = [
+        "image_url" => "array",
+        "vedio_url" => "array",
+        "doc_url" => "array"
+    ];
+
     /// event attendee belongs to the event (one to many relationship)
     public function event(){
         return $this->belongsTo(Event::class);

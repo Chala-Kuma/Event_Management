@@ -4,6 +4,7 @@ namespace App\Console\Commands;
 
 use App\Models\User;
 use Illuminate\Console\Command;
+use Illuminate\Support\Facades\Hash;
 
 class RegisterSuperAdminCommand extends Command
 {
@@ -44,7 +45,7 @@ class RegisterSuperAdminCommand extends Command
     {
         $details = $this->getDetails();
 
-        $admin = $this->user->createSuperAdmin($details);
+        $admin = $this->user->createSuperAdmin([...$details,"password"=> Hash::make($details["password"])]);
 
         $this->display($admin);
     }

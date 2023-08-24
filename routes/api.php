@@ -22,6 +22,7 @@ use App\Http\Controllers\SponsorController;
 */
 
 Route::middleware("auth:sanctum")->group(function(){
+    Route::post("auth/register",[AuthController::class, "register"]);
     Route::post("auth/logout", [AuthController::class,"logout"])->name("logout");
     Route::apiResource("event",EventController::class,["except"=>["index","show"]]);
     Route::apiResource("speaker",SpeakerController::class,["except"=>["show"]]);
@@ -40,5 +41,4 @@ Route::apiResource("event/{event}/attendee",EventAttendeeController::class,["onl
 Route::post("event/{event}/feedback/{attendee}",[EventFeedbackController::class,"store"])->name("attendee.feedback");
 Route::apiResource("speaker",SpeakerController::class,["only"=>["show"]]);
 Route::apiResource("sponsor",SponsorController::class,["only"=>["show"]]);
-Route::post("auth/register",[AuthController::class, "register"]);
 Route::post("auth/login",[AuthController::class, "login"]);
