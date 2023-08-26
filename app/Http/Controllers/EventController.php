@@ -73,6 +73,7 @@ class EventController extends Controller
     public function destroy(Event $event)
     {
         //
+        Storage::disk("public")->delete($event->banner);
         $event->delete();
         return response("",Response::HTTP_NO_CONTENT);
     }

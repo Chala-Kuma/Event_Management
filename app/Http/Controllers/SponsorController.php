@@ -70,6 +70,7 @@ class SponsorController extends Controller
     public function destroy(Sponsor $sponsor)
     {
         //
+        Storage::disk("public")->delete($sponsor->logo);
         $sponsor->delete();
         return response("",Response::HTTP_NO_CONTENT);
 
