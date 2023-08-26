@@ -29,10 +29,16 @@ class EventSpeakerController extends Controller
             "speaker_id" => ["required","integer"]
         ]);
 
-        return EventSpeaker::create([
-            "event_id" => $event->id,
-            "speaker_id" => $request->speaker_id
-        ]);
+        $speaker =Speaker::find($request->speaker_id);
+
+        if ($speaker){
+            return EventSpeaker::create([
+                "event_id" => $event->id,
+                "speaker_id" => $request->speaker_id
+            ]);
+        }
+
+        return response(["message"=>"Speaker not found"],Response::HTTP_NOT_FOUND);
     }
 
     /**

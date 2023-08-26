@@ -29,7 +29,8 @@ class EventResource extends JsonResource
             "available_seat" => $this->available_seat,
             "banner" => $this->banner,
             "speakers" => $this->speaker,
-            "sponsors" => $this->sponsor
+            "sponsors" => $this->sponsor,
+            "document" => $this->eventDocument
         ];
     }
 }

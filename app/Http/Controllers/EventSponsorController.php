@@ -29,10 +29,17 @@ class EventSponsorController extends Controller
             "sponsor_id" => ["required","integer"]
         ]);
 
-        return EventSponsor::create([
-            "event_id" => $event->id,
-            "sponsor_id" => $request->sponsor_id
-        ]);
+        $sponsor = Sponsor::find($request->sponsor_id);
+
+        if($sponsor){
+            return EventSponsor::create([
+                "event_id" => $event->id,
+                "sponsor_id" => $request->sponsor_id
+            ]);
+        }
+
+        return response(["message"=>"Sponsor not found"],Response::HTTP_NOT_FOUND);
+
     }
 
     /**

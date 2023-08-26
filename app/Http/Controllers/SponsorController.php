@@ -53,7 +53,7 @@ class SponsorController extends Controller
             Storage::disk("public")->delete($sponsor->logo);
             $sponsor->update([
                 ...$request->all(),
-                "logo" => $request->file('logo')->store("sponsor_logo","public")
+                "logo" => $request->file('logo')->store("sponsor logo","public")
             ]);
         }
         else{
