@@ -30,15 +30,19 @@ class EventSponsorController extends Controller
         ]);
 
         $sponsor = Sponsor::find($request->sponsor_id);
+        $allSponsor = EventSponsor::where("event_id",$event->id)
+                                    ->where("sponsor_id",$request->sponsor_id)->get();
 
-        if($sponsor){
-            return EventSponsor::create([
-                "event_id" => $event->id,
-                "sponsor_id" => $request->sponsor_id
-            ]);
+        if(!$sponsor){
+            return response(["message"=>"Sponsor not found"],Response::HTTP_NOT_FOUND);
         }
-
-        return response(["message"=>"Sponsor not found"],Response::HTTP_NOT_FOUND);
+        if($allSponsor){
+            return response(["message"=>"EventSponsor already exist"],Response::HTTP_UNPROCESSABLE_ENTITY);
+        }
+        return EventSponsor::create([
+            "event_id" => $event->id,
+            "sponsor_id" => $request->sponsor_id
+        ]);
 
     }
 

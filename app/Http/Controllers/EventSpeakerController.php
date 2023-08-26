@@ -30,15 +30,22 @@ class EventSpeakerController extends Controller
         ]);
 
         $speaker =Speaker::find($request->speaker_id);
+        $allSpeaker = EventSpeaker::where("event_id",$event->id)
+                                    ->where("speaker_id",$request->speaker_id)->get();
 
-        if ($speaker){
-            return EventSpeaker::create([
-                "event_id" => $event->id,
-                "speaker_id" => $request->speaker_id
-            ]);
+        if(!$speaker){
+            return response(["message"=>"Speaker not found"],Response::HTTP_NOT_FOUND);
+        }
+        if($allSpeaker){
+            return response(["message"=>"EventSpeaker already exist"],Response::HTTP_UNPROCESSABLE_ENTITY);
         }
 
-        return response(["message"=>"Speaker not found"],Response::HTTP_NOT_FOUND);
+        return EventSpeaker::create([
+            "event_id" => $event->id,
+            "speaker_id" => $request->speaker_id
+        ]);
+
+
     }
 
     /**
