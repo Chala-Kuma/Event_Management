@@ -63,7 +63,7 @@ class EventSponsorController extends Controller
     public function destroy(Event $event, Sponsor $sponsor)
     {
         //
-        EventSponsor::where("event_id",$event->id)->where("speaker_id", $sponsor->id)->delete();
+        EventSponsor::where("event_id",$event->id)->where("sponsor_id", $sponsor->id)->delete();
         return response([],Response::HTTP_NO_CONTENT);
     }
 }

@@ -4,24 +4,19 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
 
-class EventFile extends Model
+class EventImage extends Model
 {
-    use HasFactory,SoftDeletes;
+    use HasFactory;
+
 
     protected $fillable = [
+        "user_id",
         "event_id",
-        "image_url",
-        "vedio_url",
-        "doc_url"
+        "image_url"
     ];
 
-    protected $casts = [
-        "image_url" => "array",
-        "vedio_url" => "array",
-        "doc_url" => "array"
-    ];
+
 
     /// event attendee belongs to the event (one to many relationship)
     public function event(){

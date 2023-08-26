@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class EventFileController extends Controller
+class EventImageController extends Controller
 {
     /**
      * Display a listing of the resource.

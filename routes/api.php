@@ -4,7 +4,9 @@ use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\EventAttendeeController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\EventController;
+use App\Http\Controllers\EventDocumentController;
 use App\Http\Controllers\EventFeedbackController;
+use App\Http\Controllers\EventFileController;
 use App\Http\Controllers\EventSpeakerController;
 use App\Http\Controllers\EventSponsorController;
 use App\Http\Controllers\SpeakerController;
@@ -31,6 +33,7 @@ Route::middleware("auth:sanctum")->group(function(){
     Route::apiResource("event/{event}/sponsor",EventSponsorController::class,["except"=>["index","show"]]);
     Route::apiResource("event/{event}/feedback",EventFeedbackController::class,["only"=>["index","show"]]);
     Route::apiResource("event/{event}/attendee",EventAttendeeController::class,["only"=>["index","show"]]);
+    Route::apiResource("event/{event}/document",EventDocumentController::class,["except" => ["index","show"]]);
     Route::put("attendee/{attendee}",[EventAttendeeController::class,"approveAttendee"])->name("attendee.approve");
     Route::put("attendee/{attendee}/attendance",[EventAttendeeController::class,"attendance"])->name("attendee.attendance");
 });

@@ -55,9 +55,21 @@ class User extends Authenticatable
     }
 
     // user has many File relation ship (one to many relation ship)
-    public function eventFile(){
-        return $this->hasMany(EventFile::class);
+    public function eventImage(){
+        return $this->hasMany(EventImage::class);
     }
+
+    // user has many File relation ship (one to many relation ship)
+    public function eventDocument(){
+        return $this->hasMany(EventDocument::class);
+    }
+
+
+    // user has many File relation ship (one to many relation ship)
+    public function eventVideo(){
+        return $this->hasMany(EventVideo::class);
+    }
+
 
     // user has many Speaker relation ship (one to many relation ship)
     public function speaker(){

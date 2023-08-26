@@ -43,9 +43,20 @@ class Event extends Model
         return $this->hasMany(EventFeedback::class);
     }
 
-    // event has many File relation ship (one to many relation ship)
-    public function eventFile(){
-        return $this->hasMany(EventFile::class);
+    // user has many File relation ship (one to many relation ship)
+    public function eventImage(){
+        return $this->hasMany(EventImage::class);
+    }
+
+    // user has many File relation ship (one to many relation ship)
+    public function eventDocument(){
+        return $this->hasMany(EventDocument::class);
+    }
+
+
+    // user has many File relation ship (one to many relation ship)
+    public function eventVideo(){
+        return $this->hasMany(EventVideo::class);
     }
 
 

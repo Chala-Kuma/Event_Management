@@ -11,25 +11,21 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('event_files', function (Blueprint $table) {
+        Schema::create('event_videos', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained()->cascadeOnDelete();
             $table->foreignId("event_id")->constrained()->cascadeOnDelete();
-            $table->json("image_url");
-            $table->json("vedio_url");
-            $table->json("doc_url");
+            $table->string("video_url");
             $table->softDeletes();
             $table->timestamps();
         });
     }
-
-
 
     /**
      * Reverse the migrations.
      */
     public function down(): void
     {
-        Schema::dropIfExists('event_files');
+        Schema::dropIfExists('event_videos');
     }
 };
