@@ -67,6 +67,27 @@ class EventController extends Controller
         return new EventResource($event);
     }
 
+    public function report(Event $event){
+        return [
+            "title" => $event->title,
+            "title" => $event->title,
+            "descripton" => $event->descripton,
+            "start_date" => $event->start_date,
+            "end_date" => $event->end_date,
+            "location" => $event->location,
+            "hall" => $event->hall,
+            "event_type" => $event->event_type,
+            "event_status" => $event->event_status,
+            "banner" => $event->banner,
+            "speakers" => $event->speaker,
+            "sponsors" => $event->sponsor,
+            "feedback" => $event->eventFeedback,
+            "The number of  attendees" => count($event->eventAttendee),
+            "The number of present attendees" => count($event->eventAttendee->where("is_present", 1)),
+            "The number of absent attendees" => count($event->eventAttendee->where("is_present", 0))
+        ];
+    }
+
     /**
      * Remove the specified resource from storage.
      */

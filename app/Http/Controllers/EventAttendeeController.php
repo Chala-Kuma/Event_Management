@@ -77,11 +77,15 @@ class EventAttendeeController extends Controller
             "is_present" => ["required","boolean"]
         ]);
 
-        $attendee->update([
-            "is_present" => $request->is_present
-        ]);
+        if ($attendee->is_approved){
 
-        return $attendee;
+            $attendee->update([
+                "is_present" => $request->is_present
+            ]);
 
+            return $attendee;
+        }
+
+        return response(["message"=>"attendee not approved"],Response::HTTP_BAD_REQUEST);
     }
 }

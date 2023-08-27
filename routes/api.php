@@ -31,6 +31,7 @@ Route::middleware("auth:sanctum")->group(function(){
     Route::apiResource("event",EventController::class,["except"=>["index","show"]]);
     Route::apiResource("speaker",SpeakerController::class,["except"=>["show"]]);
     Route::apiResource("sponsor",SponsorController::class,["except"=>["show"]]);
+    Route::get("event/{event}/report",[EventController::class,"report"])->name("event.report");
     Route::apiResource("event/{event}/speaker",EventSpeakerController::class,["except"=>["index","show"]]);
     Route::apiResource("event/{event}/sponsor",EventSponsorController::class,["except"=>["index","show"]]);
     Route::apiResource("event/{event}/feedback",EventFeedbackController::class,["only"=>["index","show"]]);

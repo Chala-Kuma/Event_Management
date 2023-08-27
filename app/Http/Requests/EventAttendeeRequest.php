@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use Illuminate\Validation\Rule;
 use Illuminate\Foundation\Http\FormRequest;
 
 class EventAttendeeRequest extends FormRequest
@@ -24,8 +25,8 @@ class EventAttendeeRequest extends FormRequest
         return [
             //
             "name" => ["required","string"],
-            "email" => ["required","email","unique:event_attendees,email"],
-            "phone" => ["required","string","unique:event_attendees,phone"],
+            "email" => ["required","email"],
+            "phone" => ["required","string"],
             "is_present" => ["boolean"],
             "is_approved" => ["boolean"],
         ];
